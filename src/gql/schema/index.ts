@@ -11,8 +11,14 @@ export const typeDefs = `#graphql
         categoryId : String
   }
 
+  type Category {
+        id : ID!
+        name : String
+  }
+
   type Query {
      products : [Product]
      product(productId : ID!) : Product
+     categories : [Category]
   }
 `;
