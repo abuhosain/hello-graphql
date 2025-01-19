@@ -8,7 +8,7 @@ export const typeDefs = `#graphql
         price : Float
         quantity : Int
         onsStock : Boolean
-        categoryId : String
+        category : Category
   }
 
   type Category {
