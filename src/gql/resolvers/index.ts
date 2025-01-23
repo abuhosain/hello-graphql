@@ -3,24 +3,22 @@ import { db } from "../../db.js";
 export const resolvers = {
   Query: {
     products: () => db.products,
-    product: (parent: any, args: { productId: String }, context: any) => {
-      return db.products.find((pd) => pd.id === args.productId);
+    product: (parent: any, { productId }, context: any) => {
+      return db.products.find((pd) => pd.id === productId);
     },
     categories: () => db.categories,
-    category: (parent: any, args: { categoryId: String }, context: any) => {
-      return db.categories.find((ct) => ct.id === args.categoryId);
+    category: (parent: any, { categoryId }, context: any) => {
+      return db.categories.find((ct) => ct.id === categoryId);
     },
   },
   Product: {
-    category: (parent, args, context) => {
+    category: ({ categoryId }, args: any, context: any) => {
       // console.log("parent :", parent.categoryId)
-      return db.categories.find(
-        (category) => category.id === parent.categoryId
-      );
+      return db.categories.find((category) => category.id === categoryId);
     },
-    reviews : (parent, args, context) => {
-      return db.reviews.filter((review) => review.productId === parent.id);
-    }
+    reviews: ({ id }, args: any, context: any) => {
+      return db.reviews.filter((review) => review.productId === id);
+    },
   },
 
   Category: {
