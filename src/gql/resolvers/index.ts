@@ -11,18 +11,18 @@ export const resolvers = {
       return db.categories.find((ct) => ct.id === args.categoryId);
     },
   },
-  Product : {
-    category : (parent, args, context) => {
+  Product: {
+    category: (parent, args, context) => {
       // console.log("parent :", parent.categoryId)
-      return db.categories.find(category => category.id === parent.categoryId)
-    }
+      return db.categories.find(
+        (category) => category.id === parent.categoryId
+      );
+    },
   },
 
-  Category : {
-    products : (parent, args, context) => {
-      const result = db.products.filter(product => product.categoryId === parent.id);
-      return result
-    }
-  }
-
-}
+  Category: {
+    products: (parent, args, context) => {
+      return db.products.filter((product) => product.categoryId === parent.id);
+    },
+  },
+};
