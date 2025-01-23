@@ -18,6 +18,9 @@ export const resolvers = {
         (category) => category.id === parent.categoryId
       );
     },
+    reviews : (parent, args, context) => {
+      return db.reviews.filter((review) => review.productId === parent.id);
+    }
   },
 
   Category: {
